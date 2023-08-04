@@ -7,7 +7,7 @@ export default class Seat extends Component {
     isSelected: false,
   };
 
-  handleClick = () => {
+  handleClick = (number, isReserved) => {
     !this.props.isReserved && this.props.selectSeat();
   };
 
@@ -26,7 +26,7 @@ export default class Seat extends Component {
       (isReserved ? " seat--reserved" : "") +
       ` seat--${!orientation ? "north" : orientation}`;
     return (
-      <div data-tip={tooltip} className={className} onClick={this.handleClick}>
+      <div data-tip={tooltip} className={className} onClick={() => handleClick(number, isReserved)}>
         {tooltip ? <ReactTooltip {...this.props.tooltipProps} /> : null}
         <span className="seat__number">{this.props.seatNumber}</span>
       </div>
